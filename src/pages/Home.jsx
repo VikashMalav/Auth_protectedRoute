@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useUserContext } from '../context/UserProvider'
 import { Button } from '../components'
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom'
 const Home = () => {
     const [companyInfo, setCompanyInfo] = useState(null)
@@ -38,12 +38,12 @@ const Home = () => {
             })
             .catch((error) => {
                 console.log(error);
-              })
-              .finally(()=>{
+            })
+            .finally(() => {
                 setLoading(false)
-              })
-                
-                
+            })
+
+
     }, [])
 
     function handleLogOut() {
@@ -65,8 +65,9 @@ const Home = () => {
     }
     if (localUser && localUser.isLogin) {
         return (<>
-            <header className='bg-slate-400 '>
-                <ul className="flex flex-row-reverse justify-between">
+            <header className='bg-red-200 flex justify-between items-center'>
+                <span className='text-3xl font-bold text-red-600 p-2 '>Geeksyenergy</span>
+                <ul className="flex flex-row-reverse justify-start">
                     <li>
                         <Button text='Logout' className='bg-green-600 hover:bg-green-700' onClick={handleLogOut} />
                     </li>
@@ -75,24 +76,29 @@ const Home = () => {
                     </li>
                 </ul>
             </header>
-            <p className='text-3xl font-bold px-2 py-3 text-purple-600'>welcome to HomePage!</p>
-           {!loading? <div className=' bg-indigo-300 p-2'>
-               <h1>Title : {data.title}</h1>
-               <h1>Body : {data.body}</h1>
-            </div>:<p>Loading...</p>}
+            <main className='h-full '>
 
-            {isDisplayCompany ? <><div className='flex justify-center items-center my-2 '>
+                <p className='text-3xl font-bold px-2 py-3 text-purple-600'>Welcome to HomePage!</p>
+                {!loading ? <div className=' bg-indigo-300 p-2'>
+                    <h1>Title : {data.title}</h1>
+                    <h1>Body : {data.body}</h1>
+                </div> : <p>Loading...</p>}
 
-                <div className='w-4/6 bg-green-300 py-2 px-3 rounded-md'>
+                {isDisplayCompany ? <><div className='flex justify-center items-center my-2 '>
 
-                    <h3><span className='font-semibold'>Company :</span> {companyInfo.company}</h3>
-                    <h3><span className='font-semibold'>Address : </span>{companyInfo.address}</h3>
-                    <h3><span className='font-semibold'>Email :</span> {companyInfo.email}</h3>
-                    <h3><span className='font-semibold'>Phone :</span> {companyInfo.phone}</h3>
+                    <div className='w-4/6 bg-green-300 py-2 px-3 rounded-md'>
+
+                        <h3><span className='font-semibold'>Company :</span> {companyInfo.company}</h3>
+                        <h3><span className='font-semibold'>Address : </span>{companyInfo.address}</h3>
+                        <h3><span className='font-semibold'>Email :</span> {companyInfo.email}</h3>
+                        <h3><span className='font-semibold'>Phone :</span> {companyInfo.phone}</h3>
+                    </div>
                 </div>
-            </div>
 
-            </> : ''}
+                </> : ''}
+
+
+            </main>
         </>
         )
     }

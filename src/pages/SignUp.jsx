@@ -8,6 +8,7 @@ const SignUp = () => {
     const [user, setuser] = useState({
         name: '',
         number: '',
+        profession:'front end developer',
         email: '',
         password: '',
     })
@@ -27,8 +28,8 @@ const SignUp = () => {
 
     function handleSubmit(e) {
         e.preventDefault()
-
-        if (!user.name || !user.number || !user.email || !user.password) {
+console.log(user)
+        if (!user.name || !user.number || !user.email || !user.password ) {
             alert('please enter all required values')
 
         } else {
@@ -40,6 +41,7 @@ const SignUp = () => {
             setuser({
                 name: '',
                 number: '',
+                profession:'',
                 email: '',
                 password: '',
             })
@@ -55,6 +57,14 @@ const SignUp = () => {
                 <Input className='' id='number' name='number' label='Mobile No.' type='number' placeholder='enter contact no.' value={user?.number} onChange={handleChange} />
                 <Input className='' id='email' name='email' label='Email' type='email' placeholder='enter email' value={user?.email} onChange={handleChange} />
                 <Input className='' id='password' name='password' label='Password' type='password' placeholder='enter password' value={user?.password} onChange={handleChange} />
+               <div>
+                <label htmlFor="profession">Profession : </label>
+                <select id='profession'  name="profession"  onChange={handleChange}>
+                <option value='front end developer'>front end developer</option>
+                <option value='back end developer'>back end developer</option>
+                <option value='full stack developer'>full stack developer</option>
+               </select>
+               </div>
                 <Button text='Signup' className='bg-gray-300 text-center text-sm ' />
                 <p className='text-sm'>Already have an account?<Link to='/login'><span className='text-blue-600 hover:underline '>login</span></Link>  </p>
             </div>
